@@ -9,10 +9,10 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 
 def get_filters():
     """
-    Asks user to specify a city, month, and day to analyze.
+    Asks user to specify a city, mth, and day to analyze.
     Returns:
         (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
+        (str) mth - name of the mth to filter by, or "all" to apply no mth filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     
@@ -27,11 +27,11 @@ def get_filters():
         else:
             print(invalid_inputs)
     
-    # TO DO: get user raw_input for month (all, january, february, ... , june)
+    # TO DO: get user raw_input for mth (all, january, february, ... , june)
     while True :
-        month = raw_input("\nenter the name of the month\njanuary,\nfebruary,\nmarch,"
-            "\napril,\nmay,\njune\nto filter by, or \"all\" to apply no month filter\n").lower()
-        if month in ["january", "february", "march", "april", "may", "june", "all"]:
+        mth = raw_input("\nenter the name of the mth\njanuary,\nfebruary,\nmarch,"
+            "\napril,\nmay,\njune\nto filter by, or \"all\" to apply no mth filter\n").lower()
+        if mth in ["january", "february", "march", "april", "may", "june", "all"]:
             break
         else:
             print(invalid_inputs)
@@ -46,18 +46,18 @@ def get_filters():
             print(invalid_inputs)
 
     print('-'*40)
-    return city, month, day
+    return city, mth, day
 
 
-def load_data(city, month, day):
+def load_data(city, mth, day):
     """
-    Loads data for the specified city and filters by month and day if applicable.
+    Loads data for the specified city and filters by mth and day if applicable.
     Args:
         (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
+        (str) mth - name of the mth to filter by, or "all" to apply no mth filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     Returns:
-        df - Pandas DataFrame containing city data filtered by month and day
+        df - Pandas DataFrame containing city data filtered by mth and day
     """
     file_name = CITY_DATA[city]
     print ("Accessing data from: " + file_name)
@@ -66,17 +66,17 @@ def load_data(city, month, day):
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(arg = df['Start Time'], format = '%Y-%m-%d %H:%M:%S')
 
-    # filter by month if applicable
-    if month != 'all':
-        # extract month and day of week from Start Time to create new columns
-        df['month'] = df['Start Time'].dt.month
+    # filter by mth if applicable
+    if mth != 'all':
+        # extract mth and day of week from Start Time to create new columns
+        df['mth'] = df['Start Time'].dt.mth
 
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
-        month = months.index(month) + 1
+        mth = months.index(mth) + 1
 
-        # filter by month to create the new dataframe
-        df = df.loc[df['month'] == month]
+        # filter by mth to create the new dataframe
+        df = df.loc[df['mth'] == mth]
 
     # filter by day of week if applicable
     if day != 'all':
@@ -96,14 +96,14 @@ def time_stats(df):
     # Convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(arg = df['Start Time'], format = '%Y-%m-%d %H:%M:%S')
 
-    # Create new columns for month, weekday, hour
-    month = df['Start Time'].dt.month
+    # Create new columns for mth, weekday, hour
+    mth = df['Start Time'].dt.mth
     weekday_name = df['Start Time'].dt.weekday_name
     hour = df['Start Time'].dt.hour
     
-    # TO DO: display the most common month
-    most_common_month = month.mode()[0]
-    print('Most common month: ', most_common_month)
+    # TO DO: display the most common mth
+    most_common_month = mth.mode()[0]
+    print('Most common mth: ', most_common_month)
 
     # TO DO: display the most common day of week
     most_common_day_of_week = weekday_name.mode()[0]
@@ -204,8 +204,8 @@ def raw_data(df):
 
 def main():
     while 1 :
-        city, month, day = get_filters()
-        df = load_data(city, month, day)
+        city, mth, day = get_filters()
+        df = load_data(city, mth, day)
 
         time_stats(df)
         station_stats(df)
