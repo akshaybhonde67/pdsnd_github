@@ -3,6 +3,7 @@
 Include the date you created this project and README file.
 
 ### Project Title
+Explore US Bikeshare Data
 Replace the Project Title
 
 ### Description
