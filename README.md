@@ -7,6 +7,7 @@ Explore US Bikeshare Data
 Replace the Project Title
 
 ### Description
+Bikeshare activity compared for 3 cities
 Describe what your project is about and what it does
 
 ### Files used
