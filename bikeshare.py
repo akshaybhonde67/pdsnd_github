@@ -20,7 +20,7 @@ def get_filters():
     
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user raw_input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    while 1 == 1 :
+    while True :
         city = raw_input("\nenter the name of the city to analyze city names are as follows\nchicago,\nnew york,\nwashington. \n").lower()
         if city in ['chicago', 'new york', 'washington']:
             break
@@ -28,7 +28,7 @@ def get_filters():
             print(invalid_inputs)
     
     # TO DO: get user raw_input for month (all, january, february, ... , june)
-    while 1 == 1 :
+    while True :
         month = raw_input("\nenter the name of the month\njanuary,\nfebruary,\nmarch,"
             "\napril,\nmay,\njune\nto filter by, or \"all\" to apply no month filter\n").lower()
         if month in ["january", "february", "march", "april", "may", "june", "all"]:
@@ -37,7 +37,7 @@ def get_filters():
             print(invalid_inputs)
 
     # TO DO: get user raw_input for day of week (all, monday, tuesday, ... sunday)
-    while 1 == 1 :
+    while True:
         day = raw_input("\nenter the name of the day\nmonday,\ntuesday,\nwednesday,\nthursday,"
             "\nfriday,\nsaturday,\nsunday\nof week to filter by, or \"all\" to apply no day filter\n").lower()
         if day in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "all"]:
@@ -194,7 +194,7 @@ def raw_data(df):
     user_input = raw_input('Do you want to see raw data? Enter yes or no.\n')
     line_number = 0
 
-    while 1 == 1 :
+    while 1 :
         if user_input.lower() != 'no':
             print(df.iloc[line_number : line_number + 5])
             line_number += 5
@@ -203,7 +203,7 @@ def raw_data(df):
             break    
 
 def main():
-    while 1 == 1 :
+    while 1 :
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
