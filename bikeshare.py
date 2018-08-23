@@ -61,6 +61,7 @@ def load_data(city, mth, day):
     """
     file_name = CITY_DATA[city]
     print ("Accessing data from: " + file_name)
+	#reading csv file
     df = pd.read_csv(file_name)
 
     # convert the Start Time column to datetime
@@ -94,6 +95,7 @@ def time_stats(df):
     start_time = time.time()
 
     # Convert the Start Time column to datetime
+	#convert to date time format of year-mth-day hrs-mins-secs
     df['Start Time'] = pd.to_datetime(arg = df['Start Time'], format = '%Y-%m-%d %H:%M:%S')
 
     # Create new columns for mth, weekday, hour
